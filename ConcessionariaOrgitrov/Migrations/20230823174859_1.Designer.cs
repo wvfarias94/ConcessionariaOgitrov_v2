@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConcessionariaOrgitrov.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230823015809_1")]
+    [Migration("20230823174859_1")]
     partial class _1
     {
         /// <inheritdoc />

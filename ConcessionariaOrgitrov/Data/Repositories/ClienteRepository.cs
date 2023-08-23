@@ -37,7 +37,7 @@ public class ClienteRepository : IClienteRepository
 
     public void UpdateCliente(Cliente cliente)
     {
-        _context.Entry(cliente).State = EntityState.Modified;
+        _context.Update(cliente);
         _context.SaveChanges();
     }
 }

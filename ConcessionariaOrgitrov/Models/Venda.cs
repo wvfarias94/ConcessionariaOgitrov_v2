@@ -10,6 +10,7 @@ public class Venda
     public int Id { get; set; }
     [Required]
     public Cliente Cliente { get; set; }
+
     [Required]
     public Carro Carro { get; set; }
     [Required]

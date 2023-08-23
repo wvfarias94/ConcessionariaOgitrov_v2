@@ -20,7 +20,7 @@ namespace ConcessionariaOrgitrov.Data.Repositories
 
         public Venda GetVendaById(int id)
         {
-            return _context.Vendas.FirstOrDefault(v => v.Id == id);
+            return _context.Vendas.Find(id);
         }
 
         public void AddVenda(Venda venda)
@@ -31,7 +31,7 @@ namespace ConcessionariaOrgitrov.Data.Repositories
 
         public void UpdateVenda(Venda venda)
         {
-            _context.Vendas.Update(venda);
+            _context.Update(venda);
             _context.SaveChanges();
         }
 
