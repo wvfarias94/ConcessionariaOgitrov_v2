@@ -4072,24 +4072,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jadso\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Wagner Farias\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jadso\\projects\\OgitrovV2\\ConcessionariaOgitrov_v2\\ConcessionariaOrgitrov\\ConcessionariaOrgitrov.csproj",
+      "projectUniqueName": "E:\\Dev\\PROJETOS DOTNET\\ConcessionariaOgitrov_v2\\ConcessionariaOrgitrov\\ConcessionariaOrgitrov.csproj",
       "projectName": "ConcessionariaOrgitrov",
-      "projectPath": "C:\\Users\\jadso\\projects\\OgitrovV2\\ConcessionariaOgitrov_v2\\ConcessionariaOrgitrov\\ConcessionariaOrgitrov.csproj",
-      "packagesPath": "C:\\Users\\jadso\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jadso\\projects\\OgitrovV2\\ConcessionariaOgitrov_v2\\ConcessionariaOrgitrov\\obj\\",
+      "projectPath": "E:\\Dev\\PROJETOS DOTNET\\ConcessionariaOgitrov_v2\\ConcessionariaOrgitrov\\ConcessionariaOrgitrov.csproj",
+      "packagesPath": "C:\\Users\\Wagner Farias\\.nuget\\packages\\",
+      "outputPath": "E:\\Dev\\PROJETOS DOTNET\\ConcessionariaOgitrov_v2\\ConcessionariaOrgitrov\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\jadso\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Wagner Farias\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4097,8 +4092,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4167,16 +4160,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema ao ler o arquivo de cache C:\\Users\\jadso\\projects\\OgitrovV2\\ConcessionariaOgitrov_v2\\ConcessionariaOrgitrov\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

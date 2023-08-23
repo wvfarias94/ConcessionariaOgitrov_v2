@@ -2,7 +2,9 @@
 using AutoMapper;
 using ConcessionariaOrgitrov.Data;
 using ConcessionariaOrgitrov.Data.Dto.CarroDtos;
+using ConcessionariaOrgitrov.Data.Repositories;
 using ConcessionariaOrgitrov.Models;
+using ConcessionariaOrgitrov.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConcessionariaOrgitrov.Controllers;
@@ -11,62 +13,52 @@ namespace ConcessionariaOrgitrov.Controllers;
 [ApiController]
 public class CarrosController : ControllerBase
 {
-    public readonly AppDbContext _context;
-    public readonly IMapper _mapper;
+    private readonly ICarroService _carroService;
 
-    public CarrosController(AppDbContext context, IMapper mapper)
+    public CarrosController(ICarroService carroService)
     {
-        _context = context;
-        _mapper = mapper;
+        _carroService = carroService;
+
     }
+
 
     [HttpPost]
-    public IActionResult AddCarros([FromBody]CreateCarroDto _dto)
+    public IActionResult AddCarro([FromBody] CreateCarroDto carroDto)
     {
-        var _carro = _mapper.Map<CreateCarroDto, Carro>(_dto);
-        _context.Carros.Add(_carro);
-        _context.SaveChanges();
-        return Ok(_carro);
+        _carroService.CreateCarro(carroDto);
+        return Ok();
     }
+
 
     [HttpGet]
     public IEnumerable<ReadCarroDto> GetCarros()
     {
-        return _mapper.Map<IEnumerable<Carro>, IEnumerable<ReadCarroDto>>(_context.Carros);
+        return _carroService.GetCarro();
     }
 
     [HttpGet("{id}")]
-
     public IActionResult GetCarroById(int id)
     {
-        var _carro = _context.Carros.Find(id);
-        if (_carro == null)
+        var carro = _carroService.GetCarroById(id);
+        if (carro == null)
         {
             return NotFound();
         }
-        return Ok(_carro);
+        return Ok(carro);
     }
 
-    [HttpPut]
-    public IActionResult AtualizarCarro(int id, [FromBody] UpdateCarroDto updateCarroDto)
+    [HttpPut("{id}")]
+    public IActionResult AtualizarCarro(int id, [FromBody] UpdateCarroDto carroDto)
     {
-        var carro = _context.Carros.Find(id);
-
-        if (carro == null) {return NotFound();}
-
-        _mapper.Map(updateCarroDto, carro);
-        _context.SaveChanges();
+        _carroService.UpdateCarro(id, carroDto);
         return NoContent();
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public IActionResult DeleteCarroById(int id)
     {
-        var carro = _context.Carros.Find(id);
-        if (carro == null) {return NotFound();}
-
-        _context.Carros.Remove(carro);
-        _context.SaveChanges();
+        _carroService.DeleteCarro(id);
         return NoContent();
     }
 }
+    
