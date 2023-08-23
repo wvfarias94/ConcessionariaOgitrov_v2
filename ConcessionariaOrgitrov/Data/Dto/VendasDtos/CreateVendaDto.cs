@@ -7,9 +7,9 @@ namespace ConcessionariaOrgitrov.Data.Dto.VendasDtos;
 public class CreateVendaDto
 {
     [Required]
-    public Cliente Cliente { get; set; }
+    public int ClienteId { get; set; }
     [Required]
-    public Carro Carro { get; set; }
+    public int CarroId { get; set; }
     [Required]
     public double Valor { get; set; }
     [Required]

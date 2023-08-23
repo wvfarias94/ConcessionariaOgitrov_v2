@@ -1,4 +1,6 @@
 using ConcessionariaOrgitrov.Data;
+using ConcessionariaOrgitrov.Data.Repositories;
+using ConcessionariaOrgitrov.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,14 @@ builder.Services.AddDbContext<AppDbContext>(options => options
 builder.Services
     .AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddScoped<ICarroRepository, CarroRepository>();
+builder.Services.AddScoped<ICarroService, CarroService>();
+
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
+
+builder.Services.AddScoped<IVendaRepository, VendaRepository>();
+builder.Services.AddScoped<IVendaService, VendaService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
