@@ -112,7 +112,7 @@ namespace ConcessionariaOrgitrov.Migrations
                     b.Property<int>("CarroId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ClientId")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataVenda")
@@ -121,9 +121,6 @@ namespace ConcessionariaOrgitrov.Migrations
                     b.Property<int>("FormaPagamento")
                         .HasColumnType("int");
 
-                    b.Property<double>("TaxaFixa")
-                        .HasColumnType("float");
-
                     b.Property<double>("Valor")
                         .HasColumnType("float");
 
@@ -131,7 +128,7 @@ namespace ConcessionariaOrgitrov.Migrations
 
                     b.HasIndex("CarroId");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("Vendas");
                 });
@@ -153,7 +150,7 @@ namespace ConcessionariaOrgitrov.Migrations
 
                     b.HasOne("ConcessionariaOrgitrov.Models.Cliente", "Cliente")
                         .WithMany()
-                        .HasForeignKey("ClientId")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

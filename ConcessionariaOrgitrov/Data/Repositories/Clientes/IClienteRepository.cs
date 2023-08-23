@@ -1,6 +1,6 @@
 ﻿using ConcessionariaOrgitrov.Models;
 
-namespace ConcessionariaOrgitrov.Data.Repositories;
+namespace ConcessionariaOrgitrov.Data.Repositories.Clientes;
 
 public interface IClienteRepository
 {

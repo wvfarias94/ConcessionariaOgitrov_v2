@@ -7,9 +7,6 @@ namespace ConcessionariaOrgitrov.Data.Dto.VendasDtos;
 public class UpdateVendaDto
 {
     
-    public Cliente Cliente { get; set; }
-    
-    public Carro Carro { get; set; }
    
     public double Valor { get; set; }
     

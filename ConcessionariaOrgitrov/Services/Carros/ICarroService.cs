@@ -1,7 +1,7 @@
 ﻿using ConcessionariaOrgitrov.Data.Dto.CarroDtos;
 using ConcessionariaOrgitrov.Data.Dto.ClienteDtos;
 
-namespace ConcessionariaOrgitrov.Services
+namespace ConcessionariaOrgitrov.Services.Carros
 {
     public interface ICarroService
     {

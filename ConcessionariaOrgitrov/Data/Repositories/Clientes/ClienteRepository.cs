@@ -1,7 +1,7 @@
 ﻿using ConcessionariaOrgitrov.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ConcessionariaOrgitrov.Data.Repositories;
+namespace ConcessionariaOrgitrov.Data.Repositories.Clientes;
 
 public class ClienteRepository : IClienteRepository
 {

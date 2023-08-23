@@ -2,7 +2,7 @@
 using System.Linq;
 using ConcessionariaOrgitrov.Models;
 
-namespace ConcessionariaOrgitrov.Data.Repositories
+namespace ConcessionariaOrgitrov.Data.Repositories.Vendas
 {
     public class VendaRepository : IVendaRepository
     {

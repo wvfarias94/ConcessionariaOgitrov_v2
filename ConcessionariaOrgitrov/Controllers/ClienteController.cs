@@ -2,13 +2,13 @@
 using ConcessionariaOrgitrov.Data;
 using ConcessionariaOrgitrov.Data.Dto.ClienteDtos;
 using ConcessionariaOrgitrov.Models;
-using ConcessionariaOrgitrov.Services;
+using ConcessionariaOrgitrov.Services.Clientes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConcessionariaOrgitrov.Controllers;
 
-[Route("api/[controller]")]
+[Route("Clientes")]
 [ApiController]
 public class ClienteController : ControllerBase
 {
@@ -23,7 +23,7 @@ public class ClienteController : ControllerBase
     public IActionResult AddCliente([FromBody]CreateClienteDto clienteDto)
     {
         _clienteService.CreateCliente(clienteDto);
-        return Ok();
+        return Ok(clienteDto);
     }
 
     [HttpGet]
@@ -47,7 +47,7 @@ public class ClienteController : ControllerBase
     public IActionResult AtualizarCliente(int id, [FromBody] UpdateClienteDto clienteDto)
     {
         _clienteService.UpdateCliente(id, clienteDto);
-        return NoContent();
+        return Ok(clienteDto);
     }
 
     [HttpDelete("{id}")]

@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using ConcessionariaOrgitrov.Data.Dto.CarroDtos;
-using ConcessionariaOrgitrov.Data.Repositories;
+using ConcessionariaOrgitrov.Data.Repositories.Carros;
 using ConcessionariaOrgitrov.Models;
+using System.Xml.Linq;
 
-namespace ConcessionariaOrgitrov.Services;
+namespace ConcessionariaOrgitrov.Services.Carros;
 
 public class CarroService : ICarroService
 {
@@ -49,7 +50,7 @@ public class CarroService : ICarroService
     {
         var carroExistente = _carroRepository.GetCarroById(id);
 
-        if(carroExistente == null)
+        if (carroExistente == null)
         {
             throw new Exception("Carro não encontrado");
         }

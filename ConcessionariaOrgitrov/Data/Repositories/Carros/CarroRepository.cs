@@ -1,6 +1,6 @@
 ﻿using ConcessionariaOrgitrov.Models;
 
-namespace ConcessionariaOrgitrov.Data.Repositories
+namespace ConcessionariaOrgitrov.Data.Repositories.Carros
 {
     public class CarroRepository : ICarroRepository
     {
@@ -19,7 +19,7 @@ namespace ConcessionariaOrgitrov.Data.Repositories
 
         public void DeleteCarro(Carro carro)
         {
-            _context.Carros.Remove(carro); 
+            _context.Carros.Remove(carro);
             _context.SaveChanges();
         }
 

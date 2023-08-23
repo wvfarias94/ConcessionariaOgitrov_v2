@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ConcessionariaOrgitrov.Models;
 
-namespace ConcessionariaOrgitrov.Data.Repositories
+namespace ConcessionariaOrgitrov.Data.Repositories.Vendas
 {
     public interface IVendaRepository
     {

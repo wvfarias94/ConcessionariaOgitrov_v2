@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using ConcessionariaOrgitrov.Data.Dto.ClienteDtos;
-using ConcessionariaOrgitrov.Data.Repositories;
+using ConcessionariaOrgitrov.Data.Repositories.Clientes;
 using ConcessionariaOrgitrov.Models;
 
-namespace ConcessionariaOrgitrov.Services;
+namespace ConcessionariaOrgitrov.Services.Clientes;
 
 public class ClienteService : IClienteService
 {

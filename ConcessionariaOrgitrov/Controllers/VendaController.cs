@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using ConcessionariaOrgitrov.Data;
 using ConcessionariaOrgitrov.Data.Dto.VendasDtos;
-using ConcessionariaOrgitrov.Data.Repositories;
+using ConcessionariaOrgitrov.Data.Repositories.Carros;
+using ConcessionariaOrgitrov.Data.Repositories.Clientes;
 using ConcessionariaOrgitrov.Models;
-using ConcessionariaOrgitrov.Services;
+using ConcessionariaOrgitrov.Services.Vendas;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,19 @@ public class VendaController : ControllerBase
         _clienteRepository = clienteRepository;
     }
 
+    [HttpPost]
+    public IActionResult AddVenda(int clienteId, int carroId, [FromBody] CreateVendaDto vendaDto)
+    {
+        var cliente = _clienteRepository.GetClienteById(clienteId);
+        var carro = _carroRepository.GetCarroById(carroId);
+        if (cliente == null || carro == null)
+        {
+            return NotFound();
+        }
+        var venda = _vendaService.AddVenda(cliente, carro, vendaDto);
+        return CreatedAtAction(nameof(GetVendaById), new { id = venda.Id }, venda);
+    }
+
     [HttpGet]
     public IActionResult GetAllVendas()
     {
@@ -42,24 +56,11 @@ public class VendaController : ControllerBase
         return Ok(venda);
     }
 
-    [HttpPost]
-    public IActionResult AddVenda([FromQuery] int clienteId, [FromQuery] int carroId, [FromBody] CreateVendaDto vendaDto)
-    {
-        var cliente = _clienteRepository.GetClienteById(clienteId);
-        var carro = _carroRepository.GetCarroById(carroId);
-        if (cliente == null || carro == null)
-        {
-            return NotFound();
-        }
-        var venda = _vendaService.AddVenda(cliente, carro, vendaDto);
-        return CreatedAtAction(nameof(GetVendaById), new { id = venda.Id }, venda);
-    }
-
     [HttpPut("{id}")]
     public IActionResult UpdateVenda(int id, [FromBody] UpdateVendaDto vendaDto)
     {
         _vendaService.UpdateVenda(id, vendaDto);
-        return NoContent();
+        return Ok(vendaDto);
     }
 
     [HttpDelete("{id}")]

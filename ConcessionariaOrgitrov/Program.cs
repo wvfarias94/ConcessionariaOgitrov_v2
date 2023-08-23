@@ -1,6 +1,10 @@
 using ConcessionariaOrgitrov.Data;
-using ConcessionariaOrgitrov.Data.Repositories;
-using ConcessionariaOrgitrov.Services;
+using ConcessionariaOrgitrov.Data.Repositories.Carros;
+using ConcessionariaOrgitrov.Data.Repositories.Clientes;
+using ConcessionariaOrgitrov.Data.Repositories.Vendas;
+using ConcessionariaOrgitrov.Services.Carros;
+using ConcessionariaOrgitrov.Services.Clientes;
+using ConcessionariaOrgitrov.Services.Vendas;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

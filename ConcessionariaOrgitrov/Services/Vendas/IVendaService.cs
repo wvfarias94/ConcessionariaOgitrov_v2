@@ -4,7 +4,7 @@ using ConcessionariaOrgitrov.Data.Dto.VendasDtos;
 using ConcessionariaOrgitrov.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ConcessionariaOrgitrov.Services
+namespace ConcessionariaOrgitrov.Services.Vendas
 {
     public interface IVendaService
     {
@@ -13,6 +13,6 @@ namespace ConcessionariaOrgitrov.Services
         Venda AddVenda(Cliente cliente, Carro carro, CreateVendaDto createVendaDto);
         void UpdateVenda(int id, UpdateVendaDto vendaDto);
         void DeleteVenda(int id);
-        
+
     }
 }

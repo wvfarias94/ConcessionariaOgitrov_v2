@@ -4,12 +4,13 @@ using ConcessionariaOrgitrov.Data;
 using ConcessionariaOrgitrov.Data.Dto.CarroDtos;
 using ConcessionariaOrgitrov.Data.Repositories;
 using ConcessionariaOrgitrov.Models;
-using ConcessionariaOrgitrov.Services;
+using ConcessionariaOrgitrov.Services.Carros;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 namespace ConcessionariaOrgitrov.Controllers;
 
-[Route("api/[controller]")]
+[Route("Carros")]
 [ApiController]
 public class CarrosController : ControllerBase
 {
@@ -26,7 +27,7 @@ public class CarrosController : ControllerBase
     public IActionResult AddCarro([FromBody] CreateCarroDto carroDto)
     {
         _carroService.CreateCarro(carroDto);
-        return Ok();
+        return Ok(carroDto);
     }
 
 
@@ -51,7 +52,7 @@ public class CarrosController : ControllerBase
     public IActionResult AtualizarCarro(int id, [FromBody] UpdateCarroDto carroDto)
     {
         _carroService.UpdateCarro(id, carroDto);
-        return NoContent();
+        return Ok(carroDto);
     }
 
     [HttpDelete("{id}")]

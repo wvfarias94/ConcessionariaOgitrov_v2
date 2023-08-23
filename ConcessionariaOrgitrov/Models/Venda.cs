@@ -14,7 +14,7 @@ public class Venda
     public Cliente Cliente { get; set; }
     [ForeignKey("Cliente")]
     [Required]
-    public int ClientId { get; set; }
+    public int ClienteId { get; set; }
     [Required]
     public Carro Carro { get; set; }
     [ForeignKey("Carro")]
@@ -28,5 +28,4 @@ public class Venda
 
     public DateTime DataVenda { get; set; } = DateTime.Now;
     
-    public double TaxaFixa { get; private set; } = 0.02;
 }

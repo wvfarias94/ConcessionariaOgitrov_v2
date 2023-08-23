@@ -1,16 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Linq;
 using AutoMapper;
 using ConcessionariaOrgitrov.Data;
 using ConcessionariaOrgitrov.Data.Dto.ClienteDtos;
 using ConcessionariaOrgitrov.Data.Dto.VendasDtos;
-using ConcessionariaOrgitrov.Data.Repositories;
+using ConcessionariaOrgitrov.Data.Repositories.Carros;
+using ConcessionariaOrgitrov.Data.Repositories.Clientes;
+using ConcessionariaOrgitrov.Data.Repositories.Vendas;
 using ConcessionariaOrgitrov.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace ConcessionariaOrgitrov.Services;
+namespace ConcessionariaOrgitrov.Services.Vendas;
 
 public class VendaService : IVendaService
 {
-    
+
     private readonly ICarroRepository _carroRepository;
     private readonly IClienteRepository _clienteRepository;
     private readonly IVendaRepository _vendaRepository;
@@ -20,7 +24,7 @@ public class VendaService : IVendaService
     {
         _vendaRepository = vendaRepository;
         _mapper = mapper;
-        
+
     }
 
     public IEnumerable<ReadVendaDto> GetAllVendas()
@@ -48,7 +52,7 @@ public class VendaService : IVendaService
         venda.Carro = carro;
 
         _vendaRepository.AddVenda(venda);
-        
+
 
         return venda;
     }
@@ -76,5 +80,5 @@ public class VendaService : IVendaService
         _vendaRepository.DeleteVenda(venda);
     }
 
-    
+
 }
