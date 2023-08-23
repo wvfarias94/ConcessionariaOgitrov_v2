@@ -2,6 +2,7 @@
 using ConcessionariaOrgitrov.Data;
 using ConcessionariaOrgitrov.Data.Dto.VendasDtos;
 using ConcessionariaOrgitrov.Models;
+using ConcessionariaOrgitrov.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,74 +12,49 @@ namespace ConcessionariaOrgitrov.Controllers;
 [ApiController]
 public class VendaController : ControllerBase
 {
-    private readonly AppDbContext _context;
-    private readonly IMapper _mapper;
+    private readonly IVendaService _vendaService;
 
-    public VendaController(AppDbContext context, IMapper mapper)
+    public VendaController(IVendaService vendaService)
     {
-        _context = context;
-        _mapper = mapper;
+        _vendaService = vendaService;
     }
 
-
     [HttpGet]
-    public IActionResult GetVendas()
+    public IActionResult GetAllVendas()
     {
-        var vendas = _context.Vendas.Include(vendas => vendas.Cliente)
-            .Include(vendas => vendas.Carro).ToList();
-
-
-        var vendasDto = _mapper.Map<List<ReadVendaDto>>(vendas);
-        return Ok(vendasDto);
+        var vendas = _vendaService.GetAllVendas();
+        return Ok(vendas);
     }
 
     [HttpGet("{id}")]
     public IActionResult GetVendaById(int id)
     {
-        var venda = _context.Vendas.Include(vendas => vendas.Cliente)
-            .Include(vendas => vendas.Carro)
-            .FirstOrDefault(vendas => vendas.Id == id);
-
-        if (venda == null) 
-        {return NotFound();}
-
-        var vendaDto = _mapper.Map<ReadVendaDto>(venda);
-        return Ok(vendaDto);
+        var venda = _vendaService.GetVendaById(id);
+        if (venda == null)
+        {
+            return NotFound();
+        }
+        return Ok(venda);
     }
 
     [HttpPost]
-    public IActionResult PostVenda([FromBody] CreateVendaDto createVendaDto)
+    public IActionResult AddVenda([FromBody] CreateVendaDto vendaDto)
     {
-        var venda = _mapper.Map<Venda>(createVendaDto);
-
-        _context.Vendas.Add(venda);
-        _context.SaveChanges();
-
-        var vendaDto = _mapper.Map<ReadVendaDto>(venda);
-        return CreatedAtAction(nameof(GetVendaById), new { id = vendaDto.Id }, vendaDto);
+        _vendaService.AddVenda(vendaDto);
+        return Ok();
     }
 
     [HttpPut("{id}")]
-    public IActionResult PutVenda(int id, [FromBody] UpdateVendaDto updateVendaDto)
+    public IActionResult UpdateVenda(int id, [FromBody] UpdateVendaDto vendaDto)
     {
-        var venda = _context.Vendas.Find(id);
-
-        if (venda == null) {return NotFound();}
-
-        _mapper.Map(updateVendaDto, venda);
-
-        _context.SaveChanges();
+        _vendaService.UpdateVenda(id, vendaDto);
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     public IActionResult DeleteVenda(int id)
     {
-        var venda = _context.Vendas.Find(id);
-
-        if (venda == null) {return NotFound();}
-        _context.Vendas.Remove(venda);
-        _context.SaveChanges();
+        _vendaService.DeleteVenda(id);
         return NoContent();
     }
 

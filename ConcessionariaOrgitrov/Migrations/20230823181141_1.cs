@@ -60,12 +60,11 @@ namespace ConcessionariaOrgitrov.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClienteId = table.Column<int>(type: "int", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: false),
                     CarroId = table.Column<int>(type: "int", nullable: false),
                     Valor = table.Column<double>(type: "float", nullable: false),
                     FormaPagamento = table.Column<int>(type: "int", nullable: false),
                     DataVenda = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CarrosVendididosId = table.Column<int>(type: "int", nullable: false),
                     TaxaFixa = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
@@ -78,13 +77,8 @@ namespace ConcessionariaOrgitrov.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Vendas_Carros_CarrosVendididosId",
-                        column: x => x.CarrosVendididosId,
-                        principalTable: "Carros",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Vendas_Clientes_ClienteId",
-                        column: x => x.ClienteId,
+                        name: "FK_Vendas_Clientes_ClientId",
+                        column: x => x.ClientId,
                         principalTable: "Clientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -101,14 +95,9 @@ namespace ConcessionariaOrgitrov.Migrations
                 column: "CarroId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vendas_CarrosVendididosId",
+                name: "IX_Vendas_ClientId",
                 table: "Vendas",
-                column: "CarrosVendididosId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Vendas_ClienteId",
-                table: "Vendas",
-                column: "ClienteId");
+                column: "ClientId");
         }
 
         /// <inheritdoc />

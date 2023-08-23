@@ -31,7 +31,7 @@ namespace ConcessionariaOrgitrov.Data.Repositories
 
         public void UpdateVenda(Venda venda)
         {
-            _context.Update(venda);
+            _context.Vendas.Update(venda);
             _context.SaveChanges();
         }
 

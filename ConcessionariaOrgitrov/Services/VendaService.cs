@@ -30,34 +30,32 @@ public class VendaService : IVendaService
         return _mapper.Map<ReadVendaDto>(venda);
     }
 
-    public void AddVenda(CreateVendaDto vendadto)
+    public void AddVenda(CreateVendaDto vendaDto)
     {
-        var venda = _mapper.Map<Venda>(vendadto);
+        var venda = _mapper.Map<Venda>(vendaDto);
         _vendaRepository.AddVenda(venda);
     }
 
-    public void UpdateVenda(int id, UpdateVendaDto vendadto)
+    public void UpdateVenda(int id, UpdateVendaDto vendaDto)
     {
-        var existingCliente = _vendaRepository.GetVendaById(id);
-
-        if (existingCliente == null)
+        var existingVenda = _vendaRepository.GetVendaById(id);
+        if (existingVenda == null)
         {
-            throw new Exception("Cliente não encontrado");
+            throw new Exception("Venda não encontrada");
         }
 
-        _mapper.Map(vendadto, existingCliente);
-        _vendaRepository.UpdateVenda(existingCliente);
+        _mapper.Map(vendaDto, existingVenda);
+        _vendaRepository.UpdateVenda(existingVenda);
     }
 
     public void DeleteVenda(int id)
     {
-        var cliente = _vendaRepository.GetVendaById(id);
-
-        if (cliente == null)
+        var venda = _vendaRepository.GetVendaById(id);
+        if (venda == null)
         {
-            throw new Exception("Cliente não encontrado");
+            throw new Exception("Venda não encontrada");
         }
 
-        _vendaRepository.DeleteVenda(cliente);
+        _vendaRepository.DeleteVenda(venda);
     }
 }
