@@ -2,6 +2,7 @@
 using ConcessionariaOrgitrov.Data.Dto.ClienteDtos;
 using ConcessionariaOrgitrov.Data.Dto.VendasDtos;
 using ConcessionariaOrgitrov.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ConcessionariaOrgitrov.Services
 {
@@ -9,8 +10,9 @@ namespace ConcessionariaOrgitrov.Services
     {
         IEnumerable<ReadVendaDto> GetAllVendas();
         ReadVendaDto GetVendaById(int id);
-        void AddVenda(int clienteId, int carroId, CreateVendaDto vendaDto);
+        Venda AddVenda(Cliente cliente, Carro carro, CreateVendaDto createVendaDto);
         void UpdateVenda(int id, UpdateVendaDto vendaDto);
         void DeleteVenda(int id);
+        
     }
 }

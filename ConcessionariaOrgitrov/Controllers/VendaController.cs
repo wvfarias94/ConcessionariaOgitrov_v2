@@ -17,9 +17,11 @@ public class VendaController : ControllerBase
     private readonly ICarroRepository _carroRepository;
     private readonly IClienteRepository _clienteRepository;
 
-    public VendaController(IVendaService vendaService)
+    public VendaController(IVendaService vendaService, ICarroRepository carroRepository, IClienteRepository clienteRepository)
     {
         _vendaService = vendaService;
+        _carroRepository = carroRepository;
+        _clienteRepository = clienteRepository;
     }
 
     [HttpGet]
@@ -41,12 +43,16 @@ public class VendaController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult AddVenda(int clienteId, int carroId, CreateVendaDto vendaDto)
+    public IActionResult AddVenda([FromQuery] int clienteId, [FromQuery] int carroId, [FromBody] CreateVendaDto vendaDto)
     {
         var cliente = _clienteRepository.GetClienteById(clienteId);
         var carro = _carroRepository.GetCarroById(carroId);
-        _vendaService.AddVenda(vendaDto);
-        return Ok();
+        if (cliente == null || carro == null)
+        {
+            return NotFound();
+        }
+        var venda = _vendaService.AddVenda(cliente, carro, vendaDto);
+        return CreatedAtAction(nameof(GetVendaById), new { id = venda.Id }, venda);
     }
 
     [HttpPut("{id}")]

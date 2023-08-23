@@ -12,11 +12,13 @@ public class Venda
 
     [Required]
     public Cliente Cliente { get; set; }
-    //[ForeignKey("Cliente")]
+    [ForeignKey("Cliente")]
+    [Required]
     public int ClientId { get; set; }
     [Required]
     public Carro Carro { get; set; }
-    //[ForeignKey("Carro")]
+    [ForeignKey("Carro")]
+    [Required]
     public int CarroId { get; set; }
     [Required]
     public double Valor { get; set; }

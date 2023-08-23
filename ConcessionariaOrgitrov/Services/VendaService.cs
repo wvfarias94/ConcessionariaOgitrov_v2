@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
+using ConcessionariaOrgitrov.Data;
 using ConcessionariaOrgitrov.Data.Dto.ClienteDtos;
 using ConcessionariaOrgitrov.Data.Dto.VendasDtos;
 using ConcessionariaOrgitrov.Data.Repositories;
@@ -9,6 +10,7 @@ namespace ConcessionariaOrgitrov.Services;
 
 public class VendaService : IVendaService
 {
+    
     private readonly ICarroRepository _carroRepository;
     private readonly IClienteRepository _clienteRepository;
     private readonly IVendaRepository _vendaRepository;
@@ -18,6 +20,7 @@ public class VendaService : IVendaService
     {
         _vendaRepository = vendaRepository;
         _mapper = mapper;
+        
     }
 
     public IEnumerable<ReadVendaDto> GetAllVendas()
@@ -32,12 +35,22 @@ public class VendaService : IVendaService
         return _mapper.Map<ReadVendaDto>(venda);
     }
 
-    public void AddVenda(int clienteId, int carroId,CreateVendaDto vendaDto)
+    public Venda AddVenda(Cliente cliente, Carro carro, CreateVendaDto createVendaDto)
     {
-        var cliente = _clienteRepository.GetClienteById(clienteId);
-        var carro = _carroRepository.GetCarroById(carroId);
-        var venda = _mapper.Map<Venda>(vendaDto);
+        if (cliente == null || carro == null)
+        {
+            throw new ArgumentException("Cliente ou carro inválido.");
+        }
+
+        var venda = _mapper.Map<Venda>(createVendaDto);
+
+        venda.Cliente = cliente;
+        venda.Carro = carro;
+
         _vendaRepository.AddVenda(venda);
+        
+
+        return venda;
     }
 
     public void UpdateVenda(int id, UpdateVendaDto vendaDto)
@@ -62,4 +75,6 @@ public class VendaService : IVendaService
 
         _vendaRepository.DeleteVenda(venda);
     }
+
+    
 }
