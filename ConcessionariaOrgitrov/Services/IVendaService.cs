@@ -9,7 +9,7 @@ namespace ConcessionariaOrgitrov.Services
     {
         IEnumerable<ReadVendaDto> GetAllVendas();
         ReadVendaDto GetVendaById(int id);
-        void AddVenda(CreateVendaDto vendaDto);
+        void AddVenda(int clienteId, int carroId, CreateVendaDto vendaDto);
         void UpdateVenda(int id, UpdateVendaDto vendaDto);
         void DeleteVenda(int id);
     }

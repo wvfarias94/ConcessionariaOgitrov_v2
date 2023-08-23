@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ConcessionariaOrgitrov.Data;
 using ConcessionariaOrgitrov.Data.Dto.VendasDtos;
+using ConcessionariaOrgitrov.Data.Repositories;
 using ConcessionariaOrgitrov.Models;
 using ConcessionariaOrgitrov.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,8 @@ namespace ConcessionariaOrgitrov.Controllers;
 public class VendaController : ControllerBase
 {
     private readonly IVendaService _vendaService;
+    private readonly ICarroRepository _carroRepository;
+    private readonly IClienteRepository _clienteRepository;
 
     public VendaController(IVendaService vendaService)
     {
@@ -38,8 +41,10 @@ public class VendaController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult AddVenda([FromBody] CreateVendaDto vendaDto)
+    public IActionResult AddVenda(int clienteId, int carroId, CreateVendaDto vendaDto)
     {
+        var cliente = _clienteRepository.GetClienteById(clienteId);
+        var carro = _carroRepository.GetCarroById(carroId);
         _vendaService.AddVenda(vendaDto);
         return Ok();
     }

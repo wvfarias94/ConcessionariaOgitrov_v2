@@ -9,6 +9,8 @@ namespace ConcessionariaOrgitrov.Services;
 
 public class VendaService : IVendaService
 {
+    private readonly ICarroRepository _carroRepository;
+    private readonly IClienteRepository _clienteRepository;
     private readonly IVendaRepository _vendaRepository;
     private readonly IMapper _mapper;
 
@@ -30,8 +32,10 @@ public class VendaService : IVendaService
         return _mapper.Map<ReadVendaDto>(venda);
     }
 
-    public void AddVenda(CreateVendaDto vendaDto)
+    public void AddVenda(int clienteId, int carroId,CreateVendaDto vendaDto)
     {
+        var cliente = _clienteRepository.GetClienteById(clienteId);
+        var carro = _carroRepository.GetCarroById(carroId);
         var venda = _mapper.Map<Venda>(vendaDto);
         _vendaRepository.AddVenda(venda);
     }
